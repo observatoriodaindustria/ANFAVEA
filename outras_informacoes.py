@@ -64,7 +64,7 @@ def emprego_setor_autovei(df=df_base):
     df_unidirecional['dt_carga'] = dt.datetime.now()
     
     # Enviando dados para o banco
-    df_unidirecional.to_sql('anfavea_val_setor_autovei', index_label='id_setor_autovei', schema=schema, if_exists=acao_insercao, con=engine)
+    df_unidirecional.to_sql('anfavea_emprego_setor_autovei', index_label='id_setor_autovei', schema=schema, if_exists=acao_insercao, con=engine)
 
 def outras_info():
     criar_df_limpo_desmontados()

@@ -10,7 +10,6 @@ from exportacao_volume import export_volume
 from outras_informacoes import outras_info
 from licenciamento import licenciamento
 from producao import producao
-import sqlalchemy as db
 from sqlalchemy import text
 from valores_uteis import *
 
@@ -39,7 +38,7 @@ licenciamento_combustivel()
 # Inserindo valores de Informações no banco
 conexao_banco.execute(text(f"DELETE FROM [BD_OBSERVATORIO].[st].[anfavea_exp_veic_desmon] WHERE ano = {ano_atual}"))
 conexao_banco.execute(text(f"DELETE FROM [BD_OBSERVATORIO].[st].[anfavea_exp_setor_autovei] WHERE ano = {ano_atual}"))
-conexao_banco.execute(text(f"DELETE FROM [BD_OBSERVATORIO].[st].[anfavea_val_setor_autovei] WHERE ano = {ano_atual}"))
+conexao_banco.execute(text(f"DELETE FROM [BD_OBSERVATORIO].[st].[anfavea_emprego_setor_autovei] WHERE ano = {ano_atual}"))
 conexao_banco.commit()
 outras_info()
 
