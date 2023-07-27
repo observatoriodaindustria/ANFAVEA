@@ -1,6 +1,7 @@
 import pandas as pd
 import datetime as dt
-from valores_uteis import caminho_arquivo, nomes_planilhas, engine
+from valores_uteis import caminho_arquivo, nomes_planilhas, engine, schema, acao_insercao
+
 
 nomes_colunas = ['nada', 'nada2', 'tipo_combustivel', 'jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez', 'total']
 
@@ -30,4 +31,4 @@ def licenciamento_combustivel():
     df_tot_auto_comerc_leve_comb = criar_df_limpo_comb(ini_linha=4, tipo_licenciamento='Total de automóveis e comerciais leves por combustível')
     df_tot_camin_onibus_comb = criar_df_limpo_comb(ini_linha=32, tam_tabela=3, tipo_licenciamento='Licenciamento total de caminhões e ônibus por combustível')
     df_resultado = pd.concat([df_tot_auto_comerc_leve_comb, df_tot_camin_onibus_comb]).reset_index(drop='True')
-    df_resultado.to_sql('anfavea_lic_combus', if_exists='replace', index_label='id_combustiveis', schema='st', con=engine)
+    df_resultado.to_sql('anfavea_lic_combus', if_exists=acao_insercao, index_label='id_combustiveis', schema=schema, con=engine)

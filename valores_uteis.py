@@ -1,5 +1,6 @@
 import sqlalchemy as db
 from urllib.parse import quote_plus
+import datetime as dt
 
 # Nomes das planilhas
 nomes_planilhas = [
@@ -30,8 +31,11 @@ parametros = (
     'PWD=Observatorio@2022')
 
 
+schema = 'st'
+acao_insercao = 'append'
 caminho_arquivo = 'arquivo/emplacamento.xlsx'
+ano_atual = dt.datetime.now().year
 
 # Criando conexão
 url_db = quote_plus(parametros)
-engine = db.create_engine('mssql+pyodbc:///?odbc_connect=%s' % url_db)
+engine = db.create_engine(f'mssql+pyodbc:///?odbc_connect={url_db}')

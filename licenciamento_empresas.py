@@ -1,6 +1,6 @@
 import pandas as pd
 import datetime as dt
-from valores_uteis import  caminho_arquivo, nomes_planilhas, engine
+from valores_uteis import  caminho_arquivo, nomes_planilhas, engine, schema, acao_insercao
 
 # Nomes respectivos das colunas das tabelas
 nomes_colunas = ['nada', 'tipo_veiculo', 'veiculo_especifico','marca_veiculo', 'jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez', 'total']
@@ -131,4 +131,4 @@ def licenciamento_empresas():
     df_resultado = pd.concat([df_automoveis,df_comerciasi_leves, df_onibus, df_caminhoes]).reset_index(drop=True)
 
     # Enviando para o banco
-    df_resultado.to_sql('anfavea_lic_empre', schema='st', if_exists='replace', index_label='id_empresas',con=engine)
+    df_resultado.to_sql('anfavea_lic_empre', schema=schema, if_exists=acao_insercao, index_label='id_empresas',con=engine)

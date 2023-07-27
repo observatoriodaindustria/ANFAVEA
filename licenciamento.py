@@ -1,6 +1,7 @@
 import pandas as pd
 import datetime as dt
-from valores_uteis import caminho_arquivo, nomes_planilhas, engine
+from valores_uteis import caminho_arquivo, nomes_planilhas, engine, schema, acao_insercao
+
 
 nomes_colunas = ['nada', 'tipo_veiculo', 'veiculo_especifico', 'jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez', 'total']
 
@@ -37,4 +38,4 @@ def licenciamento():
     df_autoveic_novos_import = criar_df_limpo(ini_linha=24, df=df_base, tipo_licenciamento='Autoveículos novos importados')
     df_total_autoveic_novos = criar_df_limpo(ini_linha=43, df=df_base, tipo_licenciamento='Total de autoveículos novos')
     df_resultado = pd.concat([df_autoveic_novos_naci, df_autoveic_novos_import, df_total_autoveic_novos])
-    df_resultado.to_sql('anfavea_licenciamento', con=engine, schema='st', if_exists='replace',index_label='id_licenciamento')
+    df_resultado.to_sql('anfavea_licenciamento', con=engine, schema=schema, if_exists=acao_insercao,index_label='id_licenciamento')
