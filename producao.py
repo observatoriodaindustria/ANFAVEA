@@ -1,6 +1,6 @@
 import pandas as pd
 import datetime as dt
-from valores_uteis import caminho_arquivo, nomes_planilhas, engine
+from valores_uteis import caminho_arquivo, nomes_planilhas, engine, schema, acao_insercao
 
 nomes_colunas = ['nada', 'tipo_veiculo', 'veiculo_especifico', 'jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez', 'total']
 
@@ -29,4 +29,4 @@ def criar_df_limpo_produ(ini_linha, df=df_base, tipo_licenciamento='Produção d
 
 def producao():
     df_export_vol = criar_df_limpo_produ(ini_linha=4)
-    df_export_vol.to_sql('anfavea_producao', index_label='id_producao', schema='st', con=engine, if_exists='replace')
+    df_export_vol.to_sql('anfavea_producao', index_label='id_producao', schema=schema, con=engine, if_exists=acao_insercao)
