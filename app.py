@@ -1,4 +1,4 @@
-from download_arquivo import baixar_arquivo
+from download_arquivo import baixar_arquivo, ano_atual
 
 # Baixando arquivo
 baixar_arquivo()

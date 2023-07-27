@@ -1,6 +1,7 @@
 import pandas as pd
 import datetime as dt
 from valores_uteis import caminho_arquivo, nomes_planilhas, engine, schema, acao_insercao
+from download_arquivo import ano_atual
 
 
 nomes_colunas = ['nada', 'tipo_veiculo', 'veiculo_especifico', 'jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez', 'total']
@@ -22,7 +23,7 @@ def criar_df_limpo_desmontados(df=df_base):
     
     # Adicionando campos ao dataframe
     df_unidirecional['tipo'] = 'Exportações de autoveículos desmontados (CKDs)'
-    df_unidirecional['ano'] = dt.datetime.now().year
+    df_unidirecional['ano'] = ano_atual
     df_unidirecional['dt_carga'] = dt.datetime.now()
     
     # Enviando dados para o banco
@@ -41,7 +42,7 @@ def export_setor_autovei(df=df_base):
 
     # Adicionando campos ao dataframe
     df_unidirecional['tipo'] = 'Exportações em valor do setor de autoveículos'
-    df_unidirecional['ano'] = dt.datetime.now().year
+    df_unidirecional['ano'] = ano_atual
     df_unidirecional['dt_carga'] = dt.datetime.now()
     
     # Enviando dados para o banco
@@ -60,7 +61,7 @@ def emprego_setor_autovei(df=df_base):
 
     # Adicionando campos ao dataframe
     df_unidirecional['tipo'] = 'Emprego no setor de autoveículos'
-    df_unidirecional['ano'] = dt.datetime.now().year
+    df_unidirecional['ano'] = ano_atual
     df_unidirecional['dt_carga'] = dt.datetime.now()
     
     # Enviando dados para o banco

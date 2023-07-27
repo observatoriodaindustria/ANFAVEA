@@ -34,8 +34,7 @@ parametros = (
 schema = 'st'
 acao_insercao = 'append'
 caminho_arquivo = 'arquivo/emplacamento.xlsx'
-ano_atual = dt.datetime.now().year
 
 # Criando conexão
 url_db = quote_plus(parametros)
-engine = db.create_engine('mssql+pyodbc:///?odbc_connect=%s' % url_db)
+engine = db.create_engine(f'mssql+pyodbc:///?odbc_connect={url_db}')

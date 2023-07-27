@@ -1,6 +1,7 @@
 import pandas as pd
 import datetime as dt
 from valores_uteis import caminho_arquivo, nomes_planilhas, engine, schema, acao_insercao
+from download_arquivo import ano_atual
 
 
 nomes_colunas = ['nada', 'nada2', 'tipo_combustivel', 'jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez', 'total']
@@ -19,7 +20,7 @@ def criar_df_limpo_comb(ini_linha=0, tam_tabela=5, df=df_base, tipo_licenciament
     df_unidirecional = df_limpo.melt(id_vars='tipo_combustivel', var_name='mes', value_name='quantidade')
 
     # Adicionando campos ao Data Frame
-    df_unidirecional['ano'] = dt.datetime.now().year
+    df_unidirecional['ano'] = ano_atual
     df_unidirecional['tipo_licenciamento'] = tipo_licenciamento
     df_unidirecional['dt_carga'] = dt.datetime.now()
 

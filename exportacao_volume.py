@@ -1,6 +1,7 @@
 import pandas as pd
 import datetime as dt
 from valores_uteis import caminho_arquivo, nomes_planilhas, engine, schema, acao_insercao
+from download_arquivo import ano_atual
 
 
 nomes_colunas = ['nada', 'tipo_veiculo', 'veiculo_especifico', 'jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez', 'total']
@@ -18,7 +19,7 @@ def criar_df_limpo_exp(ini_linha, df=df_base,tipo_licenciamento='Exportações d
     # Adicionando campos ao dataframe
     df_unidirecional = df_limpo.melt(['tipo_veiculo','veiculo_especifico'], var_name='mes', value_name='quantidade')
     df_unidirecional['tipo_licenciamento'] = tipo_licenciamento
-    df_unidirecional['ano'] = dt.datetime.now().year
+    df_unidirecional['ano'] = ano_atual
     df_unidirecional['dt_carga'] = dt.datetime.now()
     return df_unidirecional
 

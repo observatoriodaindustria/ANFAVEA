@@ -1,6 +1,7 @@
 import pandas as pd
 import datetime as dt
 from valores_uteis import engine, caminho_arquivo, nomes_planilhas, schema, acao_insercao
+from download_arquivo import ano_atual
 
 
 nomes_colunas = ['nada','tipo', 'unidades', 'jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez', 'total']
@@ -16,7 +17,7 @@ def licenciamento_motorizacao(ini_linha=5, tam_tabela=3, df=df_base, tipo_licenc
     # Formatando a tabela
     df_unidirecional = df_limpo.melt(id_vars='tipo', var_name='mes', value_name='quantidade')
     df_unidirecional['dt_carga'] = dt.datetime.now()
-    df_unidirecional['ano'] = dt.datetime.now().year
+    df_unidirecional['ano'] = ano_atual
     df_unidirecional['tipo_licenciamento'] = tipo_licenciamento	
     df_unidirecional.to_sql('anfavea_lic_motorizacao', con=engine, schema=schema, if_exists=acao_insercao, index_label='id_motorizacao')
 

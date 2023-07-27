@@ -1,6 +1,7 @@
 import pandas as pd
 import datetime as dt
 from valores_uteis import  caminho_arquivo, nomes_planilhas, engine, schema, acao_insercao
+from download_arquivo import ano_atual
 
 # Nomes respectivos das colunas das tabelas
 nomes_colunas = ['nada', 'tipo_veiculo', 'veiculo_especifico','marca_veiculo', 'jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez', 'total']
@@ -42,7 +43,7 @@ def criar_df_limpo_empre(ini_tabela=0, tam_tabela=0, df=df_base,tipo_veiculo = '
     # Criando tabela unidirecional e adicionando variaveis
     df_unidirecional = df_limpo.melt(id_vars=['tipo_veiculo', 'veiculo_especifico','marca_veiculo','associado_anfavea'], var_name='mes', value_name='quantidade')
     df_unidirecional['tipo_licenciamento'] = tipo_licenciamento
-    df_unidirecional['ano'] = dt.datetime.now().year
+    df_unidirecional['ano'] = ano_atual
     df_unidirecional['dt_carga'] = dt.datetime.now()
 
     # Retornando Data Frame
@@ -114,7 +115,7 @@ def criar_df_limpo_empre_caminhoes(ini_tabela=0, tam_tabela=0, df=df_base,tipo_v
     # Criando tabela unidirecional e adicionando variaveis
     df_unidirecional = df_limpo.melt(id_vars=['tipo_veiculo', 'veiculo_especifico','marca_veiculo','associado_anfavea'], var_name='mes', value_name='quantidade')
     df_unidirecional['tipo_licenciamento'] = tipo_licenciamento
-    df_unidirecional['ano'] = dt.datetime.now().year
+    df_unidirecional['ano'] = ano_atual
     df_unidirecional['dt_carga'] = dt.datetime.now()
     return df_unidirecional
 
