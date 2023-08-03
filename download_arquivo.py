@@ -4,9 +4,10 @@ import shutil
 from valores_uteis import caminho_arquivo
 import datetime as dt
 
+ano_atual = 0
 
 def baixar_arquivo():
-    ano_atual = 0
+    global ano_atual
 
     ano_para_dowload = dt.datetime.now().year
     
@@ -32,4 +33,3 @@ def baixar_arquivo():
         with open(caminho_arquivo, 'wb') as arquivo:
             arquivo.write(resposta.content)
         ano_atual = ano_para_dowload
-    return ano_atual

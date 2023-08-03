@@ -1,7 +1,7 @@
-from download_arquivo import baixar_arquivo
+from download_arquivo import baixar_arquivo, ano_atual
 
 # Baixando arquivo
-ano_atual = baixar_arquivo()
+baixar_arquivo()
 
 from licenciamento_motorizacao import licenciamento_motorizacao
 from licenciamento_combustivel import licenciamento_combustivel
