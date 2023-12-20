@@ -17,18 +17,12 @@ from valores_uteis import *
 conexao_banco = engine.connect()
 
 # Removendo dados do ano mais recente para atualizar a inserção
-conexao_banco.execute(text(f"DELETE FROM [BD_OBSERVATORIO].[st].[anfavea_licenciamento] WHERE ano = {ano_atual}"))
-conexao_banco.execute(text(f"DELETE FROM [BD_OBSERVATORIO].[st].[anfavea_lic_empre] WHERE ano = {ano_atual}"))
-conexao_banco.execute(text(f"DELETE FROM [BD_OBSERVATORIO].[st].[anfavea_lic_motorizacao] WHERE ano = {ano_atual}"))
-conexao_banco.execute(text(f"DELETE FROM [BD_OBSERVATORIO].[st].[anfavea_exp_veic_desmon] WHERE ano = {ano_atual}"))
-conexao_banco.execute(text(f"DELETE FROM [BD_OBSERVATORIO].[st].[anfavea_exp_setor_autovei] WHERE ano = {ano_atual}"))
-conexao_banco.execute(text(f"DELETE FROM [BD_OBSERVATORIO].[st].[anfavea_emprego_setor_autovei] WHERE ano = {ano_atual}"))
-conexao_banco.execute(text(f"DELETE FROM [BD_OBSERVATORIO].[st].[anfavea_lic_combus] WHERE ano = {ano_atual}"))
-conexao_banco.execute(text(f"DELETE FROM [BD_OBSERVATORIO].[st].[anfavea_producao] WHERE ano = {ano_atual}"))
-conexao_banco.execute(text(f"DELETE FROM [BD_OBSERVATORIO].[st].[anfavea_export_vol] WHERE ano = {ano_atual}"))
+tabelas = ['[anfavea_licenciamento]', '[anfavea_lic_empre]', '[anfavea_lic_motorizacao]',
+           '[anfavea_exp_veic_desmon]', '[anfavea_exp_setor_autovei]', '[anfavea_lic_combus]',
+           '[anfavea_producao]', '[anfavea_export_vol]','[anfavea_emprego_setor_autovei]']
 
-# Confirmando alteração
-conexao_banco.commit()
+for tabela in tabelas:
+    conexao_banco.execute(text(f"DELETE FROM [BD_OBSERVATORIO].[st].{tabela} WHERE ano = {ano_atual}"))
 
 # Encerrando conexão com o banco
 conexao_banco.close()
@@ -54,4 +48,6 @@ producao()
 # Iserindo valores de Exportação por Volume no banc
 export_volume()
 
+
+# Inserindo valores de Empregos no setor de Autoveículos
 print("\n\nTabelas ANFAVEA inseridas com sucesso!\n\n")
