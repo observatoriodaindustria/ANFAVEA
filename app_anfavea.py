@@ -23,6 +23,7 @@ tabelas = ['[anfavea_licenciamento]', '[anfavea_lic_empre]', '[anfavea_lic_motor
 
 for tabela in tabelas:
     conexao_banco.execute(text(f"DELETE FROM [BD_OBSERVATORIO].[st].{tabela} WHERE ano = {ano_atual}"))
+conexao_banco.commit()
 
 # Encerrando conexão com o banco
 conexao_banco.close()
